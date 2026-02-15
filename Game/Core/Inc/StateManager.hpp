@@ -7,8 +7,13 @@ class StateManager
     public:
     static StateManager* GetInstance();
 
-    void RequesetStateChange(AppStateID newState);
+    void RequestStateChange(AppStateID newState);
     void ProcessStateChange();
+    
+    AppStateID GetCurrentStateID() const;
+    void Update();
+    void Draw();
+    void HandleInput();
 
     private:
         StateManager() = default;
