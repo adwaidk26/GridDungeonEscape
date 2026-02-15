@@ -7,6 +7,7 @@
 int main()
 {
     LOG_INFO("=== GridDungeonEscape Started ===");
+    SetConfigFlags(FLAG_WINDOW_RESIZABLE);
     InitWindow(GameConstants::screenWidth, GameConstants::screenHeight, "GridDungeonEscape - Base");
     SetTargetFPS(GameConstants::targetFPS);
 
