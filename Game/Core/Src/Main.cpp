@@ -2,6 +2,7 @@
 #include "Logger.hpp"
 #include "GameConstants.hpp"
 #include "StateManager.hpp"
+#include "LayoutUtils.hpp"
 
 
 int main()
@@ -16,6 +17,7 @@ int main()
 
     while (!WindowShouldClose())
     {
+        LayoutUtils::GetInstance().UpdateLayout();
         if (IsKeyPressed(KEY_F11))
         {
             ToggleFullscreen();

@@ -2,6 +2,7 @@
 #include "GameMenu.hpp"
 #include "GameConstants.hpp"
 #include "Logger.hpp"
+#include "LayoutUtils.hpp"
 
 MenuState::MenuState() : selectedButton(-1)
 {
@@ -36,33 +37,27 @@ MenuState::~MenuState()
 
 void MenuState::Draw()
 {
-    // Calculate scale based on design resolution (16:9 aspect ratio from GameConstants)
-    float scaleX = (float)GetScreenWidth() / GameConstants::screenWidth;
-    float scaleY = (float)GetScreenHeight() / GameConstants::screenHeight;
-    float scale = (scaleX < scaleY) ? scaleX : scaleY;
-
-    float destWidth = GameConstants::screenWidth * scale;
-    float destHeight = GameConstants::screenHeight * scale;
-
-    // Calculate offset to center the 16:9 content in the window
-    float offsetX = (GetScreenWidth() - destWidth) * 0.5f;
-    float offsetY = (GetScreenHeight() - destHeight) * 0.5f;
+    // Get layout metrics from utility class
+    const LayoutMetrics& layout = LayoutUtils::GetInstance().GetLayoutMetrics();
 
     if (backgroundImage.id != 0) {
         Rectangle src = {0.0f, 0.0f, (float)backgroundImage.width, (float)backgroundImage.height};
-        Rectangle dst = {offsetX, offsetY, destWidth, destHeight};
-        DrawTexturePro(backgroundImage, src, dst, {0.0f, 0.0f}, 0.0f, WHITE);
+        Rectangle bgRect = {0.0f, 0.0f, (float)GameConstants::screenWidth, (float)GameConstants::screenHeight};
+        DrawTexturePro(backgroundImage, src, LayoutUtils::GetInstance().ScaleRect(bgRect), {0.0f, 0.0f}, 0.0f, WHITE);
     }
 
-    if (GuiButton(buttonStartGame, "Start Game")) {
+    // Scale text size relative to the screen scale
+    GuiSetStyle(DEFAULT, TEXT_SIZE, (int)(20 * layout.scale));
+
+    if (GuiButton(LayoutUtils::GetInstance().ScaleRect(buttonStartGame), "Start Game")) {
         LOG_INFO("Start Game button clicked");
         selectedButton = 0;
     }
-    if (GuiButton(buttonMapEditor, "Map Editor")) {
+    if (GuiButton(LayoutUtils::GetInstance().ScaleRect(buttonMapEditor), "Map Editor")) {
         LOG_INFO("Map Editor button clicked");
         selectedButton = 1;
     }
-    if (GuiButton(buttonExit, "Exit")) {
+    if (GuiButton(LayoutUtils::GetInstance().ScaleRect(buttonExit), "Exit")) {
         LOG_INFO("Exit button clicked");
         selectedButton = 2;
     }
