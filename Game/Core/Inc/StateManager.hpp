@@ -14,6 +14,7 @@ class StateManager
     void Update();
     void Draw();
     void HandleInput();
+    void Shutdown();
 
     private:
         StateManager() = default;

@@ -53,3 +53,10 @@ void StateManager::HandleInput()
         currentAppState->HandleInput();
     }
 }
+
+void StateManager::Shutdown()
+{
+    pendingAppStateID = STATE_NONE;
+    currentAppStateID = STATE_NONE;
+    currentAppState.reset();
+}

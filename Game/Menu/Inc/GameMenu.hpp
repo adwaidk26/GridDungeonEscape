@@ -8,6 +8,11 @@ class MenuState : public AppState
 public:
     MenuState();
     ~MenuState();
+
+    // Delete copy constructor and assignment operator to prevent double-free of Texture2D
+    MenuState(const MenuState&) = delete;
+    MenuState& operator=(const MenuState&) = delete;
+
     void Draw() override;
     void HandleInput() override;
     void Update() override;

@@ -34,6 +34,7 @@ int main()
     }
     
     LOG_INFO("=== GridDungeonEscape Closed ===");
+    stateManager->Shutdown();
     CloseWindow();
     return 0;
 }
