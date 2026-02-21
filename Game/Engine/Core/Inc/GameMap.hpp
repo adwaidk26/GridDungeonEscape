@@ -1,5 +1,6 @@
 #pragma once
 
+#include <string>
 #include <vector>
 
 #include "CellType.hpp"
@@ -15,6 +16,8 @@ class GameMap
 public:
     GameMap() = default;
     GameMap(int width, int height);
+
+    bool LoadFromFile(const std::string& filePath);
 
     void Resize(int width, int height);
 

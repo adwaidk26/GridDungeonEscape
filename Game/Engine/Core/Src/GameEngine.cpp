@@ -8,6 +8,7 @@
 
 GameEngine::GameEngine()
 {
+    gameMap.LoadFromFile(TextFormat("%s/level1.map", MAP_FOLDER));
     LOG_INFO("GameEngine state created");
 }
 

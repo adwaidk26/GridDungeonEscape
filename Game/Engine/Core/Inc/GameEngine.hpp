@@ -1,6 +1,7 @@
 #pragma once
 
 #include "AppState.hpp"
+#include "GameMap.hpp"
 
 class GameEngine : public AppState
 {
@@ -14,4 +15,5 @@ public:
 
 private:
     int tickCounter = 0;
+    GameMap gameMap;
 };
