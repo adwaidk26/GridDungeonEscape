@@ -3,6 +3,7 @@
 #include "GameConstants.hpp"
 #include "Logger.hpp"
 #include "LayoutUtils.hpp"
+#include "StateManager.hpp"
 
 MenuState::MenuState() : selectedButton(-1)
 {
@@ -76,10 +77,12 @@ void MenuState::Update()
     switch (selectedButton) {
         case 0:
             LOG_INFO("Transitioning to GAME state");
+            StateManager::GetInstance()->RequestStateChange(GAME);
             selectedButton = -1;
             break;
         case 1:
             LOG_INFO("Transitioning to MAP_EDITOR state");
+            StateManager::GetInstance()->RequestStateChange(MAP_EDITOR);
             selectedButton = -1;
             break;
         case 2:
