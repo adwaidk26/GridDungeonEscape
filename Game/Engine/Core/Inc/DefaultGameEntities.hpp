@@ -49,3 +49,33 @@ public:
         DrawPolyLines(position, 4, 14.0f, 45.0f, ORANGE);
     }
 };
+
+class GrassEntity final : public GameEntity
+{
+public:
+    explicit GrassEntity(Vector2 spawnPosition = {0.0f, 0.0f})
+    {
+        SetPosition(spawnPosition);
+    }
+
+    void Draw() override
+    {
+        DrawCircleV(position, 12.0f, LIME);
+        DrawCircleLines(static_cast<int>(position.x), static_cast<int>(position.y), 12.0f, DARKGREEN);
+    }
+};
+
+class StoneWallEntity final : public GameEntity
+{
+public:
+    explicit StoneWallEntity(Vector2 spawnPosition = {0.0f, 0.0f})
+    {
+        SetPosition(spawnPosition);
+    }
+
+    void Draw() override
+    {
+        DrawRectangle(static_cast<int>(position.x - 12.0f), static_cast<int>(position.y - 12.0f), 24, 24, LIGHTGRAY);
+        DrawRectangleLines(static_cast<int>(position.x - 12.0f), static_cast<int>(position.y - 12.0f), 24, 24, GRAY);
+    }
+};

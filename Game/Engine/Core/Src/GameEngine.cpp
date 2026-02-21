@@ -6,7 +6,7 @@
 #include "Logger.hpp"
 #include "StateManager.hpp"
 
-GameEngine::GameEngine()
+GameEngine::GameEngine() : gameRenderer(gameMap)
 {
     gameMap.LoadFromFile(TextFormat("%s/level1.map", MAP_FOLDER));
     LOG_INFO("GameEngine state created");
@@ -41,6 +41,7 @@ void GameEngine::Draw()
     int hx = (int)(layout.offsetX + (layout.destWidth - hintWidth) * 0.5f);
     int hy = (int)(layout.offsetY + 80 * layout.scale);
     DrawText(hint, hx, hy, hintSize, LIGHTGRAY);
+    gameRenderer.Draw();
 }
 
 void GameEngine::HandleInput()
