@@ -10,12 +10,13 @@ int main()
     LOG_INFO("=== GridDungeonEscape Started ===");
     SetConfigFlags(FLAG_WINDOW_RESIZABLE);
     InitWindow(GameConstants::screenWidth, GameConstants::screenHeight, "GridDungeonEscape - Base");
+    SetExitKey(KEY_NULL);
     SetTargetFPS(GameConstants::targetFPS);
 
     StateManager* stateManager = StateManager::GetInstance();
     stateManager->RequestStateChange(MENU);
 
-    while (!WindowShouldClose())
+    while (!WindowShouldClose() && !stateManager->IsQuitRequested())
     {
         LayoutUtils::GetInstance().UpdateLayout();
         if (IsKeyPressed(KEY_F11))

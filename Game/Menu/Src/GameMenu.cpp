@@ -87,6 +87,7 @@ void MenuState::Update()
             break;
         case 2:
             LOG_INFO("Exit requested");
+            StateManager::GetInstance()->RequestQuit();
             selectedButton = -1;
             break;
         default:

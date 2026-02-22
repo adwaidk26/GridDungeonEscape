@@ -14,6 +14,12 @@ void StateManager::RequestStateChange(AppStateID appID)
     pendingAppStateID = appID;
 }
 
+void StateManager::RequestQuit()
+{
+    LOG_INFO("Quit requested");
+    quitRequested = true;
+}
+
 void StateManager::ProcessStateChange()
 {
     if(pendingAppStateID == STATE_NONE)
@@ -28,6 +34,11 @@ void StateManager::ProcessStateChange()
 AppStateID StateManager::GetCurrentStateID() const
 {
     return currentAppStateID;
+}
+
+bool StateManager::IsQuitRequested() const
+{
+    return quitRequested;
 }
 
 void StateManager::Update()
@@ -58,5 +69,6 @@ void StateManager::Shutdown()
 {
     pendingAppStateID = STATE_NONE;
     currentAppStateID = STATE_NONE;
+    quitRequested = false;
     currentAppState.reset();
 }
