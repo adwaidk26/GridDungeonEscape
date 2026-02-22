@@ -3,6 +3,8 @@
 #include <cstdint>
 #include <raylib.h>
 
+#include "GameConstants.hpp"
+
 enum class GameEntityTrait : uint32_t
 {
     None = 0,
@@ -20,6 +22,12 @@ public:
     void SetPosition(Vector2 pos);
     Vector2 GetPosition() const;
 
+    void SetGridPosition(int x, int y);
+    int GetGridX() const;
+    int GetGridY() const;
+
+    static Vector2 GetWorldPosFromGridPos(int x, int y);
+
     void AddTrait(GameEntityTrait trait);
     void RemoveTrait(GameEntityTrait trait);
     bool HasTrait(GameEntityTrait trait) const;
@@ -36,6 +44,8 @@ public:
 
 protected:
     Vector2 position{0.0f, 0.0f};
+    int gridX = 0;
+    int gridY = 0;
     uint32_t traits = static_cast<uint32_t>(GameEntityTrait::None);
 };
 
@@ -52,6 +62,30 @@ inline void GameEntity::SetPosition(Vector2 pos)
 inline Vector2 GameEntity::GetPosition() const
 {
     return position;
+}
+
+inline void GameEntity::SetGridPosition(int x, int y)
+{
+    gridX = x;
+    gridY = y;
+}
+
+inline int GameEntity::GetGridX() const
+{
+    return gridX;
+}
+
+inline int GameEntity::GetGridY() const
+{
+    return gridY;
+}
+
+inline Vector2 GameEntity::GetWorldPosFromGridPos(int x, int y)
+{
+    return {
+        static_cast<float>(x * GameConstants::TILE_SIZE + GameConstants::TILE_SIZE / 2),
+        static_cast<float>(y * GameConstants::TILE_SIZE + GameConstants::TILE_SIZE / 2)
+    };
 }
 
 inline void GameEntity::AddTrait(GameEntityTrait trait)

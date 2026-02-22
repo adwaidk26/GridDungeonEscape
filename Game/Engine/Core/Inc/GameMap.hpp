@@ -1,14 +1,14 @@
 #pragma once
 
+#include <memory>
 #include <string>
 #include <vector>
 
-#include "CellType.hpp"
+#include "GameEntity.hpp"
 
 struct GameMapCell
 {
-    TileType tile = TileType::Empty;
-    EntityType entity = EntityType::None;
+    std::unique_ptr<GameEntity> entity;
 };
 
 class GameMap
@@ -29,8 +29,7 @@ public:
     const GameMapCell& GetCell(int x, int y) const;
     GameMapCell& GetCell(int x, int y);
 
-    void SetTile(int x, int y, TileType tile);
-    void SetEntity(int x, int y, EntityType entity);
+    void SetEntity(int x, int y, std::unique_ptr<GameEntity> entity);
 
 private:
     int width = 0;

@@ -2,13 +2,6 @@
 
 #include <cstdint>
 
-enum class TileType : uint8_t
-{
-    Empty = 0,
-    Dirt = 1,
-    Wall = 2
-};
-
 enum class EntityType : uint8_t
 {
     None = 0,

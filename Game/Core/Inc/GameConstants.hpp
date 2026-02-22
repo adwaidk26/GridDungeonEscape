@@ -7,4 +7,5 @@ namespace GameConstants {
     constexpr float aspectRatio = 16.0f / 9.0f;
     constexpr int targetFPS = 60;
     inline constexpr const char* gameName = "GridDungeonEscape";
+    constexpr int TILE_SIZE = 100;
 }

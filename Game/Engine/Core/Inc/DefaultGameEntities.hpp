@@ -13,8 +13,9 @@ public:
 
     void Draw() override
     {
-        DrawCircleV(position, 18.0f, SKYBLUE);
-        DrawCircleLines(static_cast<int>(position.x), static_cast<int>(position.y), 18.0f, BLUE);
+        const float size = static_cast<float>(GameConstants::TILE_SIZE);
+        DrawRectangle(static_cast<int>(position.x - size / 2), static_cast<int>(position.y - size / 2), static_cast<int>(size), static_cast<int>(size), SKYBLUE);
+        DrawRectangleLines(static_cast<int>(position.x - size / 2), static_cast<int>(position.y - size / 2), static_cast<int>(size), static_cast<int>(size), BLUE);
     }
 };
 
@@ -29,8 +30,9 @@ public:
 
     void Draw() override
     {
-        DrawCircleV(position, 16.0f, GRAY);
-        DrawCircleLines(static_cast<int>(position.x), static_cast<int>(position.y), 16.0f, DARKGRAY);
+        const float radius = static_cast<float>(GameConstants::TILE_SIZE) / 2.0f;
+        DrawCircleV(position, radius, GRAY);
+        DrawCircleLines(static_cast<int>(position.x), static_cast<int>(position.y), radius, DARKGRAY);
     }
 };
 
@@ -45,8 +47,9 @@ public:
 
     void Draw() override
     {
-        DrawPoly(position, 4, 14.0f, 45.0f, GOLD);
-        DrawPolyLines(position, 4, 14.0f, 45.0f, ORANGE);
+        const float radius = static_cast<float>(GameConstants::TILE_SIZE) / 2.0f;
+        DrawCircleV(position, radius, GOLD);
+        DrawCircleLines(static_cast<int>(position.x), static_cast<int>(position.y), radius, ORANGE);
     }
 };
 
@@ -60,8 +63,9 @@ public:
 
     void Draw() override
     {
-        DrawCircleV(position, 12.0f, LIME);
-        DrawCircleLines(static_cast<int>(position.x), static_cast<int>(position.y), 12.0f, DARKGREEN);
+        const float size = static_cast<float>(GameConstants::TILE_SIZE);
+        DrawRectangle(static_cast<int>(position.x - size / 2), static_cast<int>(position.y - size / 2), static_cast<int>(size), static_cast<int>(size), LIME);
+        DrawRectangleLines(static_cast<int>(position.x - size / 2), static_cast<int>(position.y - size / 2), static_cast<int>(size), static_cast<int>(size), DARKGREEN);
     }
 };
 
@@ -75,7 +79,8 @@ public:
 
     void Draw() override
     {
-        DrawRectangle(static_cast<int>(position.x - 12.0f), static_cast<int>(position.y - 12.0f), 24, 24, LIGHTGRAY);
-        DrawRectangleLines(static_cast<int>(position.x - 12.0f), static_cast<int>(position.y - 12.0f), 24, 24, GRAY);
+        const float size = static_cast<float>(GameConstants::TILE_SIZE);
+        DrawRectangle(static_cast<int>(position.x - size / 2), static_cast<int>(position.y - size / 2), static_cast<int>(size), static_cast<int>(size), LIGHTGRAY);
+        DrawRectangleLines(static_cast<int>(position.x - size / 2), static_cast<int>(position.y - size / 2), static_cast<int>(size), static_cast<int>(size), GRAY);
     }
 };
