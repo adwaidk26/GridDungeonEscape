@@ -10,7 +10,8 @@ enum class GameEntityTrait : uint32_t
     None = 0,
     Movable = 1u << 0,
     Collectable = 1u << 1,
-    Breakable = 1u << 2
+    Breakable = 1u << 2,
+    Collector = 1u << 3
 };
 
 class GameEntity
@@ -35,10 +36,12 @@ public:
     void SetMovable(bool enabled);
     void SetCollectable(bool enabled);
     void SetBreakable(bool enabled);
+    void SetCollector(bool enabled);
 
     bool IsMovable() const;
     bool IsCollectable() const;
     bool IsBreakable() const;
+    bool IsCollector() const;
 
     virtual void Draw() = 0;
 
@@ -130,6 +133,15 @@ inline void GameEntity::SetBreakable(bool enabled)
     }
 }
 
+inline void GameEntity::SetCollector(bool enabled)
+{
+    if (enabled) {
+        AddTrait(GameEntityTrait::Collector);
+    } else {
+        RemoveTrait(GameEntityTrait::Collector);
+    }
+}
+
 inline bool GameEntity::IsMovable() const
 {
     return HasTrait(GameEntityTrait::Movable);
@@ -143,4 +155,9 @@ inline bool GameEntity::IsCollectable() const
 inline bool GameEntity::IsBreakable() const
 {
     return HasTrait(GameEntityTrait::Breakable);
+}
+
+inline bool GameEntity::IsCollector() const
+{
+    return HasTrait(GameEntityTrait::Collector);
 }

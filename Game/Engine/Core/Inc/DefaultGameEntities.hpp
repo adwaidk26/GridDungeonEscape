@@ -9,6 +9,7 @@ public:
     {
         SetPosition(spawnPosition);
         SetMovable(true);
+        SetCollector(true);
     }
 
     void Draw() override
@@ -59,6 +60,7 @@ public:
     explicit GrassEntity(Vector2 spawnPosition = {0.0f, 0.0f})
     {
         SetPosition(spawnPosition);
+        SetCollectable(true);
     }
 
     void Draw() override
