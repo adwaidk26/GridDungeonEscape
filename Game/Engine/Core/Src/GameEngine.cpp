@@ -106,6 +106,10 @@ void GameEngine::Update()
     if (tickCounter == 1) {
         LOG_INFO("GameEngine state running");
     }
+
+    if (tickCounter % GRAVITY_STEP_TICKS == 0) {
+        ApplyGravity();
+    }
 }
 //temporary function
 GameEntity* GameEngine::FindInitialControlledEntity() const
@@ -123,6 +127,41 @@ GameEntity* GameEngine::FindInitialControlledEntity() const
         }
     }
     return nullptr;
+}
+
+bool GameEngine::ShouldApplyGravityTo(const GameEntity& entity) const
+{
+    return entity.IsGravityApplicable();
+}
+
+void GameEngine::ApplyGravity()
+{
+    const int mapWidth = gameMap.GetWidth();
+    const int mapHeight = gameMap.GetHeight();
+    if (mapWidth <= 0 || mapHeight <= 1) {
+        return;
+    }
+
+    for (int y = mapHeight - 2; y >= 0; --y) {
+        for (int x = 0; x < mapWidth; ++x) {
+            GameMapCell& sourceCell = gameMap.GetCell(x, y);
+            if (!sourceCell.entity) {
+                continue;
+            }
+
+            GameEntity* entity = sourceCell.entity.get();
+            if (!ShouldApplyGravityTo(*entity)) {
+                continue;
+            }
+
+            const int targetY = y + 1;
+            if (gameMap.GetCell(x, targetY).entity) {
+                continue;
+            }
+
+            MoveEntity(x, y, x, targetY);
+        }
+    }
 }
 
 bool GameEngine::MoveEntity(int fromX, int fromY, int toX, int toY)

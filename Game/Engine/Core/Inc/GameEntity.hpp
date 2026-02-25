@@ -11,7 +11,8 @@ enum class GameEntityTrait : uint32_t
     Movable = 1u << 0,
     Collectable = 1u << 1,
     Breakable = 1u << 2,
-    Collector = 1u << 3
+    Collector = 1u << 3,
+    GravityApplicable = 1u << 4
 };
 
 class GameEntity
@@ -37,11 +38,13 @@ public:
     void SetCollectable(bool enabled);
     void SetBreakable(bool enabled);
     void SetCollector(bool enabled);
+    void SetGravityApplicable(bool enabled);
 
     bool IsMovable() const;
     bool IsCollectable() const;
     bool IsBreakable() const;
     bool IsCollector() const;
+    bool IsGravityApplicable() const;
 
     virtual void Draw() = 0;
 
@@ -142,6 +145,15 @@ inline void GameEntity::SetCollector(bool enabled)
     }
 }
 
+inline void GameEntity::SetGravityApplicable(bool enabled)
+{
+    if (enabled) {
+        AddTrait(GameEntityTrait::GravityApplicable);
+    } else {
+        RemoveTrait(GameEntityTrait::GravityApplicable);
+    }
+}
+
 inline bool GameEntity::IsMovable() const
 {
     return HasTrait(GameEntityTrait::Movable);
@@ -160,4 +172,9 @@ inline bool GameEntity::IsBreakable() const
 inline bool GameEntity::IsCollector() const
 {
     return HasTrait(GameEntityTrait::Collector);
+}
+
+inline bool GameEntity::IsGravityApplicable() const
+{
+    return HasTrait(GameEntityTrait::GravityApplicable);
 }

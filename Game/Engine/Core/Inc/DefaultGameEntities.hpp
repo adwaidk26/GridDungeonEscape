@@ -10,6 +10,7 @@ public:
         SetPosition(spawnPosition);
         SetMovable(true);
         SetCollector(true);
+        SetGravityApplicable(false);
     }
 
     void Draw() override
@@ -27,6 +28,7 @@ public:
     {
         SetPosition(spawnPosition);
         SetMovable(true);
+        SetGravityApplicable(true);
     }
 
     void Draw() override
@@ -44,6 +46,7 @@ public:
     {
         SetPosition(spawnPosition);
         SetCollectable(true);
+        SetGravityApplicable(false);
     }
 
     void Draw() override
@@ -61,6 +64,7 @@ public:
     {
         SetPosition(spawnPosition);
         SetCollectable(true);
+        SetGravityApplicable(false);
     }
 
     void Draw() override
@@ -77,6 +81,7 @@ public:
     explicit StoneWallEntity(Vector2 spawnPosition = {0.0f, 0.0f})
     {
         SetPosition(spawnPosition);
+        SetGravityApplicable(false);
     }
 
     void Draw() override

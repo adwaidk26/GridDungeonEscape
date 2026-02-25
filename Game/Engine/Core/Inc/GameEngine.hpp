@@ -16,10 +16,13 @@ public:
 
 private:
     GameEntity* FindInitialControlledEntity() const;
+    bool ShouldApplyGravityTo(const GameEntity& entity) const;
+    void ApplyGravity();
     bool MoveEntity(int fromX, int fromY, int toX, int toY);
     bool TryMoveEntity(int fromX, int fromY, int dx, int dy, int power);
 
     static constexpr int PLAYER_PUSH_POWER = 1;
+    static constexpr int GRAVITY_STEP_TICKS = 8;
     GameEntity* movementControlledEntity = nullptr;
     int tickCounter = 0;
     GameMap gameMap;
