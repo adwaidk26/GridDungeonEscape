@@ -21,13 +21,16 @@ file(GLOB SOURCES
 
 add_executable(${GAME_NAME} ${SOURCES})
 
-# Define image folder path as preprocessor macro
-set(IMAGE_FOLDER "${PROJECT_SOURCE_DIR}/Game/Res/Images")
-add_definitions(-DIMAGE_FOLDER="${IMAGE_FOLDER}")
+# Base runtime data directory (default for local builds, overridable via -DGAME_DATA_DIR=... in RPM spec)
+set(GAME_DATA_DIR "${PROJECT_SOURCE_DIR}/Game/Res" CACHE PATH "Runtime game data directory")
+set(IMAGE_FOLDER "${GAME_DATA_DIR}/Images")
+set(MAP_FOLDER "${GAME_DATA_DIR}/Maps")
 
-# Define map folder path as preprocessor macro
-set(MAP_FOLDER "${PROJECT_SOURCE_DIR}/Game/Res/Maps")
-add_definitions(-DMAP_FOLDER="${MAP_FOLDER}")
+target_compile_definitions(${GAME_NAME} PRIVATE
+	GAME_DATA_DIR="${GAME_DATA_DIR}"
+	IMAGE_FOLDER="${IMAGE_FOLDER}"
+	MAP_FOLDER="${MAP_FOLDER}"
+)
 
 find_package(raylib REQUIRED)
 target_link_libraries(${GAME_NAME} PRIVATE raylib)
