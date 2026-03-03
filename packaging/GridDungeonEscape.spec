@@ -1,9 +1,8 @@
 Name:           griddungeonescape
 Version:        0.0.1
-Release:        1
+Release:        1%{?dist}
 Summary:        Grid-based dungeon puzzle game built with raylib
 License:        Proprietary
-Group:          Games
 Source0:        %{name}-%{version}.tar.gz
 
 BuildRequires:  cmake
@@ -24,8 +23,6 @@ cmake -S . -B build \
 cmake --build build
 
 %install
-rm -rf %{buildroot}
-
 install -d %{buildroot}%{_bindir}
 install -m 0755 build/GridDungeonEscape %{buildroot}%{_bindir}/GridDungeonEscape
 
@@ -36,11 +33,8 @@ install -m 0644 Game/Res/Maps/* %{buildroot}%{_datadir}/GridDungeonEscape/Maps/
 
 %files
 %{_bindir}/GridDungeonEscape
-%dir %{_datadir}/GridDungeonEscape
-%dir %{_datadir}/GridDungeonEscape/Images
-%dir %{_datadir}/GridDungeonEscape/Maps
-%{_datadir}/GridDungeonEscape/Images/*
-%{_datadir}/GridDungeonEscape/Maps/*
+%{_datadir}/GridDungeonEscape
 
 %changelog
+* Tue Mar 03 2026 Your Name <you@example.com> - 0.0.1-1
 - Initial RPM packaging for gbs build
