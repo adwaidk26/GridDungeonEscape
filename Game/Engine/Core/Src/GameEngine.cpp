@@ -91,12 +91,6 @@ void GameEngine::HandleInput()
         return;
     }
 
-    GameMapCell& controlledCell = gameMap.GetCell(controlledX, controlledY);
-    if (controlledCell.entity.get() != movementControlledEntity) {
-        LOG_WARN("Movement-controlled entity pointer is stale");
-        return;
-    }
-
     TryMoveEntity(controlledX, controlledY, dx, dy, PLAYER_PUSH_POWER);
 }
 
