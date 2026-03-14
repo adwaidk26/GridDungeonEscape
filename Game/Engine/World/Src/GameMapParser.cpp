@@ -1,10 +1,9 @@
 #include "GameMapParser.hpp"
-
-#include <fstream>
 #include <memory>
+#include <sstream>
 #include <string>
 #include <vector>
-
+#include <raylib.h>
 #include "DefaultGameEntities.hpp"
 #include "Logger.hpp"
 
@@ -14,13 +13,17 @@ namespace {
 
 bool ReadRowsFromFile(const std::string& filePath, std::vector<std::string>& outRows)
 {
-    std::ifstream file(filePath);
-    if (!file.is_open()) {
+    char* fileText = LoadFileText(filePath.c_str());
+    if (!fileText) {
         LOG_ERR("Failed to open map file: %s", filePath.c_str());
         return false;
     }
 
     outRows.clear();
+    std::string text(fileText);
+    UnloadFileText(fileText);
+
+    std::istringstream file(text);
     std::string line;
     while (std::getline(file, line)) {
         if (!line.empty() && line.back() == '\r') {
