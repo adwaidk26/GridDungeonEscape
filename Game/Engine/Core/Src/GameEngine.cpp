@@ -10,7 +10,10 @@
 
 GameEngine::GameEngine() : gameRenderer(gameMap)
 {
-    const bool loaded = gameMap.LoadFromFile(TextFormat("%s/level1.map", MAP_FOLDER));
+    const bool loaded = gameMap.LoadFromFiles(
+        TextFormat("%s/level1.entities.map", MAP_FOLDER),
+        TextFormat("%s/level1.tiles.map", MAP_FOLDER)
+    );
     if (!loaded) {
         LOG_ERR("Failed to load map for GameEngine");
     }

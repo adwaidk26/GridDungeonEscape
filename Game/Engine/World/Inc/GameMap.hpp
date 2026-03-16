@@ -19,7 +19,7 @@ public:
     GameMap() = default;
     GameMap(int width, int height);
 
-    bool LoadFromFile(const std::string& filePath);
+    bool LoadFromFiles(const std::string& entitiesFilePath, const std::string& tilesFilePath);
 
     void Resize(int width, int height);
 

@@ -11,12 +11,12 @@ GameMap::GameMap(int widthIn, int heightIn)
     Resize(widthIn, heightIn);
 }
 
-bool GameMap::LoadFromFile(const std::string &filePath)
+bool GameMap::LoadFromFiles(const std::string& entitiesFilePath, const std::string& tilesFilePath)
 {
     int parsedWidth = 0;
     int parsedHeight = 0;
     std::vector<std::vector<GameMapCell>> parsedGrid;
-    const bool loaded = GameMapParser::LoadMapFromFile(filePath, parsedGrid, parsedWidth, parsedHeight);
+    const bool loaded = GameMapParser::LoadMapFromFiles(entitiesFilePath, tilesFilePath, parsedGrid, parsedWidth, parsedHeight);
     if (!loaded)
     {
         return false;
