@@ -24,14 +24,14 @@ bool CellTile::getIsTileDestructible() const
     return isDestructible;
 }
 
-void CellTile::setTileClimbable()
+void CellTile::setTileClimbable(bool isClimbableValue)
 {
-    isClimbable = true;
+    isClimbable = isClimbableValue;
 }
 
-void CellTile::setTileDestructible()
+void CellTile::setTileDestructible(bool isDestructibleValue)
 {
-    isDestructible = true;
+    isDestructible = isDestructibleValue;
 }
 
 Vector2 CellTile::getTilePosition() const

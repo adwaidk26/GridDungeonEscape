@@ -30,6 +30,28 @@ Texture2D& GetVinesWallTexture()
 
 }  // namespace
 
+MetalGrillTile::MetalGrillTile(int xPos, int yPos)
+    : CellTile(xPos, yPos)
+{
+}
+
+MetalWallTile::MetalWallTile(int xPos, int yPos)
+    : CellTile(xPos, yPos)
+{
+}
+
+MudWallTile::MudWallTile(int xPos, int yPos)
+    : CellTile(xPos, yPos)
+{
+    setTileDestructible(true);
+}
+
+VinesWallTile::VinesWallTile(int xPos, int yPos)
+    : CellTile(xPos, yPos)
+{
+    setTileClimbable(true);
+}
+
 void MetalGrillTile::drawTile()
 {
     RenderUtils::DrawTextureInTile(GetMetalGrillTexture(), getTilePosition());

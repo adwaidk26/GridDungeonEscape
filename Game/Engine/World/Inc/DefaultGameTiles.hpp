@@ -5,27 +5,27 @@
 class MetalGrillTile final : public CellTile
 {
 public:
-    using CellTile::CellTile;
+    MetalGrillTile(int xPos, int yPos);
     void drawTile() override;
 };
 
 class MetalWallTile final : public CellTile
 {
 public:
-    using CellTile::CellTile;
+    MetalWallTile(int xPos, int yPos);
     void drawTile() override;
 };
 
 class MudWallTile final : public CellTile
 {
 public:
-    using CellTile::CellTile;
+    MudWallTile(int xPos, int yPos);
     void drawTile() override;
 };
 
 class VinesWallTile final : public CellTile
 {
 public:
-    using CellTile::CellTile;
+    VinesWallTile(int xPos, int yPos);
     void drawTile() override;
 };

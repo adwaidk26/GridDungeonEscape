@@ -9,8 +9,8 @@ public:
     virtual ~CellTile() = default;
     bool getIsTileClimbable() const;
     bool getIsTileDestructible() const;
-    void setTileClimbable();
-    void setTileDestructible();
+    void setTileClimbable(bool isClimbableValue);
+    void setTileDestructible(bool isDestructibleValue);
     virtual void drawTile() = 0;
 
 protected:
