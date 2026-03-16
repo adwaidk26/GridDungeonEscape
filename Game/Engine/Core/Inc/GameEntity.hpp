@@ -10,7 +10,7 @@ enum class GameEntityTrait : uint32_t
     None = 0,
     Movable = 1u << 0,
     Collectable = 1u << 1,
-    Breakable = 1u << 2,
+    Destructible = 1u << 2,
     Collector = 1u << 3,
     GravityApplicable = 1u << 4
 };
@@ -36,13 +36,13 @@ public:
 
     void SetMovable(bool enabled);
     void SetCollectable(bool enabled);
-    void SetBreakable(bool enabled);
+    void SetDestructible(bool enabled);
     void SetCollector(bool enabled);
     void SetGravityApplicable(bool enabled);
 
     bool IsMovable() const;
     bool IsCollectable() const;
-    bool IsBreakable() const;
+    bool IsDestructible() const;
     bool IsCollector() const;
     bool IsGravityApplicable() const;
 
@@ -127,12 +127,12 @@ inline void GameEntity::SetCollectable(bool enabled)
     }
 }
 
-inline void GameEntity::SetBreakable(bool enabled)
+inline void GameEntity::SetDestructible(bool enabled)
 {
     if (enabled) {
-        AddTrait(GameEntityTrait::Breakable);
+        AddTrait(GameEntityTrait::Destructible);
     } else {
-        RemoveTrait(GameEntityTrait::Breakable);
+        RemoveTrait(GameEntityTrait::Destructible);
     }
 }
 
@@ -164,9 +164,9 @@ inline bool GameEntity::IsCollectable() const
     return HasTrait(GameEntityTrait::Collectable);
 }
 
-inline bool GameEntity::IsBreakable() const
+inline bool GameEntity::IsDestructible() const
 {
-    return HasTrait(GameEntityTrait::Breakable);
+    return HasTrait(GameEntityTrait::Destructible);
 }
 
 inline bool GameEntity::IsCollector() const

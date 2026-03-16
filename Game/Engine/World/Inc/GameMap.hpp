@@ -5,10 +5,12 @@
 #include <vector>
 
 #include "GameEntity.hpp"
+#include "GameTile.hpp"
 
 struct GameMapCell
 {
     std::unique_ptr<GameEntity> entity;
+    std::unique_ptr<CellTile> tile;
 };
 
 class GameMap
