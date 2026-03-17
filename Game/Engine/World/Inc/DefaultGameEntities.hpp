@@ -1,6 +1,23 @@
 #pragma once
 
 #include "GameEntity.hpp"
+#include "RenderUtils.hpp"
+
+namespace DefaultGameEntityTextures {
+
+inline Texture2D& GetBoulderEntityTexture()
+{
+    static Texture2D texture = LoadTexture(TextFormat("%s/BoulderEntity.png", IMAGE_FOLDER));
+    return texture;
+}
+
+inline Texture2D& GetGemEntityTexture()
+{
+    static Texture2D texture = LoadTexture(TextFormat("%s/GemEntity.png", IMAGE_FOLDER));
+    return texture;
+}
+
+}  // namespace DefaultGameEntityTextures
 
 class PlayerEntity final : public GameEntity
 {
@@ -33,9 +50,7 @@ public:
 
     void Draw() override
     {
-        const float radius = static_cast<float>(GameConstants::TILE_SIZE) / 2.0f;
-        DrawCircleV(position, radius, GRAY);
-        DrawCircleLines(static_cast<int>(position.x), static_cast<int>(position.y), radius, DARKGRAY);
+        RenderUtils::DrawTextureInTile(DefaultGameEntityTextures::GetBoulderEntityTexture(), position);
     }
 };
 
@@ -51,9 +66,7 @@ public:
 
     void Draw() override
     {
-        const float radius = static_cast<float>(GameConstants::TILE_SIZE) / 2.0f;
-        DrawCircleV(position, radius, GOLD);
-        DrawCircleLines(static_cast<int>(position.x), static_cast<int>(position.y), radius, ORANGE);
+        RenderUtils::DrawTextureInTile(DefaultGameEntityTextures::GetGemEntityTexture(), position);
     }
 };
 
