@@ -17,6 +17,11 @@ inline Texture2D& GetGemEntityTexture()
     return texture;
 }
 
+inline Texture2D& GetStoneWallEntitiyTexture()
+{
+    static Texture2D texture = LoadTexture(TextFormat("%s/StoneWallEnitity.png", IMAGE_FOLDER));
+    return texture;
+}
 }  // namespace DefaultGameEntityTextures
 
 class PlayerEntity final : public GameEntity
@@ -99,8 +104,7 @@ public:
 
     void Draw() override
     {
-        const float size = static_cast<float>(GameConstants::TILE_SIZE);
-        DrawRectangle(static_cast<int>(position.x - size / 2), static_cast<int>(position.y - size / 2), static_cast<int>(size), static_cast<int>(size), LIGHTGRAY);
-        DrawRectangleLines(static_cast<int>(position.x - size / 2), static_cast<int>(position.y - size / 2), static_cast<int>(size), static_cast<int>(size), GRAY);
+        RenderUtils::DrawTextureInTile(DefaultGameEntityTextures::GetStoneWallEntitiyTexture(), position);
+
     }
 };
