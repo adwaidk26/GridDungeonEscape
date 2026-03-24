@@ -11,9 +11,21 @@ inline Texture2D& GetBoulderEntityTexture()
     return texture;
 }
 
+inline Texture2D& GetPlayerEntityTexture()
+{
+    static Texture2D texture = LoadTexture(TextFormat("%s/PlayerRightEntity.png", IMAGE_FOLDER));
+    return texture;
+}
+
 inline Texture2D& GetGemEntityTexture()
 {
     static Texture2D texture = LoadTexture(TextFormat("%s/GemEntity.png", IMAGE_FOLDER));
+    return texture;
+}
+
+inline Texture2D& GetGrassBushEntityTexture()
+{
+    static Texture2D texture = LoadTexture(TextFormat("%s/GrassBushEntity.png", IMAGE_FOLDER));
     return texture;
 }
 
@@ -37,9 +49,7 @@ public:
 
     void Draw() override
     {
-        const float size = static_cast<float>(GameConstants::TILE_SIZE);
-        DrawRectangle(static_cast<int>(position.x - size / 2), static_cast<int>(position.y - size / 2), static_cast<int>(size), static_cast<int>(size), SKYBLUE);
-        DrawRectangleLines(static_cast<int>(position.x - size / 2), static_cast<int>(position.y - size / 2), static_cast<int>(size), static_cast<int>(size), BLUE);
+        RenderUtils::DrawTextureInTile(DefaultGameEntityTextures::GetPlayerEntityTexture(), position);
     }
 };
 
@@ -87,9 +97,7 @@ public:
 
     void Draw() override
     {
-        const float size = static_cast<float>(GameConstants::TILE_SIZE);
-        DrawRectangle(static_cast<int>(position.x - size / 2), static_cast<int>(position.y - size / 2), static_cast<int>(size), static_cast<int>(size), LIME);
-        DrawRectangleLines(static_cast<int>(position.x - size / 2), static_cast<int>(position.y - size / 2), static_cast<int>(size), static_cast<int>(size), DARKGREEN);
+        RenderUtils::DrawTextureInTile(DefaultGameEntityTextures::GetGrassBushEntityTexture(), position);
     }
 };
 
